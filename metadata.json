@@ -1,0 +1,6 @@
+{
+  "name": "IT Company Management System",
+  "description": "একটি আধুনিক ও প্রিমিয়াম আইটি কোম্পানি ম্যানেজমেন্ট সফটওয়্যার যেখানে টিম মেম্বার, টাস্ক ট্র্যাকিং, ক্লায়েন্ট রিলেশনশিপ (CRM), ইনভয়েস/অ্যাকাউন্টস এবং জেমিনি এআই বিজনেস পার্টনার ফিচারস রয়েছে।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

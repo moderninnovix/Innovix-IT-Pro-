@@ -1,0 +1,559 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;650;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Default Theme: Premium Obsidian Void (Dark Mode) */
+  --bg-app: #060608;               
+  --bg-sidebar: rgba(10, 10, 13, 0.8); 
+  --bg-card: rgba(18, 18, 22, 0.65); 
+  --bg-card-solid: #0c0c0e;        
+  --border-main: rgba(255, 255, 255, 0.08); 
+  --border-focus: rgba(255, 255, 255, 0.2);
+  --text-primary: #f4f4f5;         
+  --text-secondary: #a1a1aa;       
+  --text-muted: #71717a;           
+  --accent-color: #ffffff;         
+  --glass-glow: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 80%);
+  --shadow-main: 0 10px 40px -12px rgba(0, 0, 0, 0.85);
+}
+
+/* Base Light and Dark Selectors */
+.dark {
+  --bg-app: #060608;
+  --bg-sidebar: rgba(10, 10, 13, 0.8);
+  --bg-card: rgba(18, 18, 22, 0.65);
+  --bg-card-solid: #0c0c0e;
+  --border-main: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(255, 255, 255, 0.22);
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #5e5e66;
+  --accent-color: #ffffff;
+  --shadow-main: 0 15px 35px -10px rgba(0, 0, 0, 0.9);
+}
+
+.light {
+  /* Pristine Pure White & Pitch Ink Theme */
+  --bg-app: #ffffff;               /* Absolute pure paper white background canvas */
+  --bg-sidebar: #ffffff;           /* Pure white sidebar panel */
+  --bg-card: #ffffff;              /* Pure white card layout containers */
+  --bg-card-solid: #ffffff;        /* Pure solid white floating components */
+  --border-main: rgba(0, 0, 0, 0.08); /* Clean razor crisp border limits */
+  --border-focus: rgba(0, 0, 0, 0.25);
+  --text-primary: #000000;         /* Pure solid black typography */
+  --text-secondary: #000000;       /* Keep important sub-messages in full black */
+  --text-muted: #111111;           /* Highly legible subheadings */
+  --accent-color: #000000;         /* absolute pitch black accents */
+  --shadow-main: 0 4px 16px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-theme-bg: var(--bg-app);
+  --color-theme-sidebar: var(--bg-sidebar);
+  --color-theme-card: var(--bg-card);
+  --color-theme-card-solid: var(--bg-card-solid);
+  --color-theme-border: var(--border-main);
+  --color-theme-focus: var(--border-focus);
+  --color-theme-text-main: var(--text-primary);
+  --color-theme-text-sub: var(--text-secondary);
+  --color-theme-text-muted: var(--text-muted);
+  --color-theme-accent: var(--accent-color);
+  
+  --animate-fade-in: fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Overrides for Pristine Light Theme Readability & Look */
+.light {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* Force ALL dark hardcoded backgrounds to pure solid white card layouts with borders */
+  .bg-white\/5, 
+  .bg-white\/10,
+  .bg-white\/2,
+  .bg-slate-905,
+  .bg-slate-900,
+  .bg-slate-950,
+  .bg-indigo-950,
+  .bg-slate-800,
+  .bg-slate-850,
+  .bg-[#090d16],
+  .bg-[#121626],
+  .bg-[#121626]/80,
+  .bg-[#121626]/95,
+  .bg-[#111526]/90,
+  .bg-[#111625]/90,
+  .bg-[#151c2e]/80,
+  .bg-[#151c2e]/95,
+  .bg-[#191f35],
+  .bg-[#101423]/95,
+  .bg-[#131726],
+  .bg-[#171c2e]/40,
+  .bg-[#121629],
+  .bg-[#101323]/40,
+  .bg-[#191f36]/40,
+  .bg-[#0d101e]/60,
+  .bg-[#0b0e1b],
+  .bg-[#0f172a]/80,
+  .bg-[#111526]/95,
+  .bg-[#141b2c],
+  .bg-[#1a1b3a],
+  .bg-[#1c1d3a],
+  .bg-[#1e1b4b],
+  .bg-[#0d121f],
+  .bg-slate-900/40,
+  .bg-slate-900/50,
+  .bg-slate-900/60,
+  .bg-slate-950/45,
+  .bg-slate-950/40,
+  .bg-[#101423]/40,
+  .bg-[#111526]/90,
+  .bg-[#192033],
+  .bg-black/5,
+  .bg-black/10,
+  .bg-black/15,
+  .bg-black/20,
+  .bg-black/25,
+  .bg-black/40,
+  .bg-black/50,
+  .bg-black/60,
+  .bg-black/80,
+  /* Escape classes for Tailwind compiled format */
+  .bg-\[\#090d16\],
+  .bg-\[\#121626\]\/80,
+  .bg-\[\#121626\]\/95,
+  .bg-\[\#111526\]\/90,
+  .bg-\[\#111526\]\/95,
+  .bg-\[\#111625\]\/90,
+  .bg-\[\#151c2e\]\/85,
+  .bg-\[\#151c2e\]\/80,
+  .bg-\[\#151c2e\]\/95,
+  .bg-\[\#191f35\],
+  .bg-\[\#192033\],
+  .bg-\[\#101423\]\/95,
+  .bg-\[\#101423\]\/40,
+  .bg-\[\#131726\],
+  .bg-\[\#171c2e\]\/40,
+  .bg-\[\#121629\],
+  .bg-\[\#101323\]\/40,
+  .bg-\[\#191f36\]\/40,
+  .bg-\[\#0d101e\]\/60,
+  .bg-\[\#0d101e\],
+  .bg-\[\#0b0e1b\],
+  .bg-\[\#0f172a\]\/80,
+  .bg-\[\#141b2c\],
+  .bg-\[\#1a1b3a\],
+  .bg-\[\#1c1d3a\],
+  .bg-\[\#1e1b4b\],
+  .bg-\[\#0d121f\],
+  .bg-slate-900\/40,
+  .bg-slate-900\/50,
+  .bg-slate-900\/60,
+  .bg-slate-950\/40,
+  .bg-slate-950\/45,
+  .bg-slate-950 {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+    color: #000000 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Hide raw blur layout gradients to give pristine white aesthetic */
+  [class*="bg-indigo-600/15"],
+  [class*="bg-blue-600/15"],
+  [class*="bg-purple-650/10"],
+  [class*="blur-"],
+  .absolute.bg-blue-600\/5, 
+  .absolute.bg-purple-605\/15,
+  .absolute.bg-blue-600\/15, 
+  .absolute.bg-purple-600\/15, 
+  .absolute.bg-purple-650\/10,
+  .rounded-full.blur-[140px] {
+    display: none !important;
+  }
+
+  /* Make sure background sections under main layouts also turn pure white */
+  main, aside, section, article {
+    background-color: #ffffff !important;
+  }
+
+  /* High contrast badge cards (Stats cards highlight background) */
+  .bg-white\/5.p-4.rounded-2xl,
+  .bg-slate-900\/40.p-6.rounded-3xl,
+  .p-4.rounded-2xl {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Header banner block custom light presentation */
+  .bg-gradient-to-r.from-indigo-950\/45,
+  .bg-gradient-to-r.from-indigo-950\/45.via-slate-900\/50.to-blue-900\/25,
+  .bg-gradient-to-r.from-indigo-950\/45.via-slate-900\/50 {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* In-app navigation tabs backplate (Pill tray look) */
+  .bg-white\/5.p-1.rounded-xl,
+  .flex.bg-white\/5.p-1 {
+    background-color: #f3f4f6 !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    padding: 4px !important;
+  }
+
+  /* Sidebar styling - pure physical minimalist design */
+  aside {
+    background-color: #ffffff !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Active Sidebar Links & buttons overrides - Sleek swiss dark design */
+  aside .bg-white\/15,
+  aside .bg-white\/20,
+  aside .bg-white\/10 {
+    background-color: #000000 !important;
+    border: 1px solid #000000 !important;
+    color: #ffffff !important;
+  }
+
+  aside .bg-white\/15 *,
+  aside .bg-white\/20 *,
+  aside .bg-white\/10 * {
+    color: #ffffff !important;
+  }
+
+  /* Inactive sidebar buttons */
+  aside button:not(.bg-white\/15):not(.bg-white\/20):not(.bg-white\/10) {
+    color: #000000 !important;
+  }
+  aside button:not(.bg-white\/15):not(.bg-white\/20):not(.bg-white\/10):hover {
+    background-color: #f3f4f6 !important;
+    color: #000000 !important;
+  }
+
+  /* Core Launcher brand initial logo block inside sidebar */
+  aside .bg-gradient-to-tr.from-neutral-800,
+  aside .bg-gradient-to-tr.from-neutral-800.to-neutral-900 {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #000000 !important;
+  }
+  aside .bg-gradient-to-tr.from-neutral-800 *,
+  aside .bg-gradient-to-tr.from-neutral-800.to-neutral-900 * {
+    color: #ffffff !important;
+  }
+
+  /* Input fields, dropdown selects, and textareas */
+  input, select, textarea, select option {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    color: #000000 !important;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: #000000 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: #52525b !important;
+  }
+
+  /* Dynamic solid-colored interactive buttons stay bright and readable with white text */
+  .bg-indigo-600, .bg-indigo-750, .bg-indigo-700, .bg-indigo-500,
+  .bg-emerald-600, .bg-emerald-700, .bg-emerald-500,
+  .bg-rose-550, .bg-rose-500, .bg-rose-600,
+  .bg-amber-500, .bg-teal-500, .bg-blue-600, .bg-indigo-605,
+  .bg-gradient-to-r.from-blue-500.to-indigo-600,
+  [class*="from-indigo-600"], [class*="to-indigo-750"] {
+    background-image: none !important; 
+    background-color: #4f46e5 !important; /* Elegant Indigo for primary CTA actions */
+    color: #ffffff !important;
+    border: 1px solid #4f46e5 !important;
+  }
+
+  /* Apply same highlight structure inside the button blocks */
+  .bg-indigo-600 *, .bg-indigo-750 *, .bg-indigo-700 *, .bg-indigo-500 *,
+  .bg-emerald-600 *, .bg-emerald-700 *, .bg-emerald-505 *,
+  .bg-rose-550 *, .bg-rose-505 *, .bg-rose-605 *,
+  .bg-amber-500 *, .bg-teal-505 *, .bg-blue-606 *, .bg-indigo-605 *,
+  .bg-gradient-to-r.from-blue-500.to-indigo-600 *,
+  [class*="from-indigo-600"] *, [class*="to-indigo-750"] * {
+    color: #ffffff !important;
+  }
+
+  /* Specifically style Emerald success and Rose danger buttons */
+  .bg-emerald-500, .bg-emerald-600 {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+  }
+  .bg-emerald-500 *, .bg-emerald-600 * { color: #ffffff !important; }
+
+  .bg-rose-500, .bg-rose-600 {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+  }
+  .bg-rose-500 *, .bg-rose-600 * { color: #ffffff !important; }
+
+  /* Ghost/Outlined items inside colored elements mapped to subtle outlines */
+  .bg-white\/15:not(aside *) {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Force all general typography to rich pitch-black color */
+  h1, h2, h3, h4, h5, h6, strong, p, label, span, em, th, td, option {
+    color: #000000 !important;
+  }
+
+  /* Overriding Tailwind specific text color utilities */
+  .text-white:not(button *):not(.bg-indigo-600 *):not(.bg-indigo-500 *):not(.bg-emerald-600 *):not(.bg-rose-550 *):not(.bg-rose-500 *):not(.bg-rose-600 *):not(.bg-blue-600 *):not(.bg-neutral-900 *),
+  .text-slate-100, .text-slate-150, .text-slate-200, .text-slate-300, .text-slate-350, .text-slate-400, .text-slate-450, .text-slate-455, .text-slate-500,
+  .text-zinc-100, .text-zinc-200, .text-zinc-300, .text-zinc-400, .text-zinc-500,
+  .text-neutral-150, .text-neutral-200, .text-neutral-300, .text-neutral-400, .text-neutral-500, .text-slate-205 {
+    color: #000000 !important;
+  }
+
+  /* Sub-tab active indicator/pill state mapping */
+  .bg-[#1a1b3a],
+  .bg-indigo-550\/20,
+  .bg-indigo-505\/25,
+  .bg-indigo-500\/20,
+  .bg-indigo-500\/25,
+  .bg-[#1e1b4b],
+  .bg-\[\#1e1b4b\],
+  .bg-\[\#1a1b3a\],
+  .bg-indigo-550\/20,
+  .bg-indigo-500\/25 {
+    background-color: #f5f3ff !important;
+    color: #4f46e5 !important;
+    border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  }
+
+  .bg-[#1a1b3a] *,
+  .bg-indigo-550\/20 *,
+  .bg-[#1e1b4b] *,
+  .bg-\[\#1e1b4b\] *,
+  .bg-indigo-500\/25 *,
+  .bg-indigo-500\/20 *,
+  .bg-\[\#1a1b3a\] *,
+  .bg-indigo-550\/20 *,
+  .bg-indigo-500\/25 * {
+    color: #4f46e5 !important;
+  }
+
+  /* Dynamic color highlight texts (e.g. key active stats and tags) */
+  .text-indigo-400, .text-indigo-305, .text-indigo-300, .text-indigo-100, .text-indigo-200 {
+    color: #4f46e5 !important;
+  }
+
+  /* Soft badge styling: High contrast Tailwind badge standard layouts */
+  
+  /* Green badges */
+  .bg-emerald-500\/10,
+  .bg-emerald-555\/25,
+  .bg-emerald-500\/5,
+  .bg-emerald-500\/20 {
+    background-color: #f0fdf4 !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  }
+  .bg-emerald-500\/10 *,
+  .bg-emerald-555\/25 *,
+  .bg-emerald-500\/5 *,
+  .bg-emerald-500\/20 *,
+  .text-emerald-400,
+  .text-emerald-350,
+  .text-emerald-300 {
+    color: #15803d !important;
+  }
+
+  /* Red badges */
+  .bg-rose-500\/10,
+  .bg-rose-500\/5,
+  .bg-rose-500\/20,
+  .bg-danger\/10 {
+    background-color: #fef2f2 !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  }
+  .bg-rose-500\/10 *,
+  .bg-rose-500\/5 *,
+  .bg-rose-500\/20 *,
+  .text-rose-455,
+  .text-rose-400,
+  .text-rose-500,
+  .text-rose-300 {
+    color: #b91c1c !important;
+  }
+
+  /* Amber/Yellow badges */
+  .bg-amber-500\/5,
+  .bg-amber-500\/10,
+  .bg-amber-500\/15,
+  .bg-amber-500\/20 {
+    background-color: #fffbeb !important;
+    border: 1px solid rgba(245, 158, 11, 0.2) !important;
+  }
+  .bg-amber-500\/5 *,
+  .bg-amber-500\/10 *,
+  .bg-amber-500\/15 *,
+  .bg-amber-500\/20 *,
+  .text-amber-400,
+  .text-amber-300,
+  .text-amber-200 {
+    color: #b45309 !important;
+  }
+
+  /* Blue badges */
+  .bg-blue-500\/10,
+  .bg-blue-500\/20,
+  .bg-blue-550\/10,
+  .bg-[#e0f2fe]/10 {
+    background-color: #eff6ff !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  }
+  .bg-blue-500\/10 *,
+  .bg-blue-500\/20 *,
+  .text-blue-400,
+  .text-blue-300,
+  .text-blue-200 {
+    color: #1d4ed8 !important;
+  }
+
+  /* Special alert tags */
+  .bg-[#1b2138],
+  .bg-\[\#1b2138\] {
+    background-color: #f3f4f6 !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+  .bg-[#1b2138] *,
+  .bg-\[\#1b2138\] * {
+    color: #000000 !important;
+  }
+
+  /* Tables formatting: Pure white grids with black ink style */
+  table {
+    background-color: #ffffff !important;
+  }
+
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  tr:hover {
+    background-color: rgba(0, 0, 0, 0.012) !important;
+  }
+
+  th {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.15) !important;
+  }
+
+  td {
+    color: #000000 !important;
+  }
+
+  /* Custom grid line borders and dividers */
+  .border-white\/10, 
+  .border-white\/5, 
+  .border-white\/20, 
+  .border-indigo-500\/25,
+  .border-indigo-500\/20, 
+  .border-indigo-550\/20,
+  .border-white\/15,
+  .border-white\/8,
+  .border-white\/12,
+  .border-slate-800 {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Chat bubble incoming and files display overrides */
+  .bg-[#1c1d3a] {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Recharts Text labels high contrast mapping */
+  .recharts-text {
+    fill: #000000 !important;
+  }
+}
+
+/* Custom Scrollbars for Premium Glass Look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.light ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(9, 9, 11, 0.12);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(9, 9, 11, 0.22);
+}
+
+/* Print utility mode for invoice printing */
+@media print {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  .print\:border-none {
+    border: none !important;
+  }
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+  main {
+    padding: 0 !important;
+    background: white !important;
+  }
+}
